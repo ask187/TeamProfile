@@ -28,7 +28,7 @@ export default class SearchBar extends Component {
     props.preventDefault();
     let teams = [...this.state.teams];
     let foundObj = teams.filter(
-      d => d.team_name.toUpperCase() == this.state.searchKey.toUpperCase()
+      d => d.team_name.toUpperCase() === this.state.searchKey.toUpperCase()
     );
     let foundId = foundObj
       ? foundObj[0]
@@ -37,6 +37,8 @@ export default class SearchBar extends Component {
           : undefined
         : undefined
       : undefined;
+
+    this.props.changeTeamId(foundId);
   };
   inputChange = e => {
     this.setState({
