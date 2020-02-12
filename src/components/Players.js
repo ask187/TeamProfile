@@ -5,7 +5,8 @@ export default class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      players: []
+      players: [],
+      playerInfo: []
     };
   }
 
@@ -18,6 +19,7 @@ export default class Players extends Component {
           players: d.data.filter(d => d.is_current_team_member)
         });
       });
+
       content = this.state.players.map((player, ind) => (
         <div key={ind}>{player.name}</div>
       ));
@@ -35,7 +37,7 @@ export default class Players extends Component {
         </div>
       ));
     }
-    return content;
+    return <div className="ui grid">{content}</div>;
   };
   componentWillReceiveProps = props => {
     dota_api.get(`teams/${props.teamId}/players`).then(d =>

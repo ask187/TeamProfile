@@ -13,7 +13,7 @@ export default class SearchBar extends Component {
     dota_api.get(`teams`).then(({ data }) => {
       let teamsObj = data.map(team => {
         let obj = {};
-        obj["team_name"] = team.name;
+        obj["team_name"] = team.tag;
         obj["team_id"] = team.team_id;
         obj["team_logo"] = team.logo_url;
 
