@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import dota_api from "../api/dotaapi";
+import PlayerCard from "./PlayerCard";
 
 export default class Players extends Component {
   constructor(props) {
     super(props);
     this.state = {
       players: [],
-      playerInfo: []
+      playerInfo: {}
     };
   }
 
   renderPlayers = () => {
-    console.log(this.state.players);
     let content = <div></div>;
+
     if (this.state.players.length <= 0) {
       dota_api.get(`teams/${this.props.teamId}/players`).then(d => {
         this.setState({
@@ -21,20 +22,22 @@ export default class Players extends Component {
       });
 
       content = this.state.players.map((player, ind) => (
-        <div key={ind}>{player.name}</div>
+        <div key={ind}>
+          {console.log(player)}
+          <PlayerCard
+            players={this.state.playerInfo}
+            playerId={player.account_id}
+            index={ind}
+          />
+        </div>
       ));
     } else {
       content = this.state.players.map((player, ind) => (
-        <div key={ind} className="five wide column">
-          <div className="ui card">
-            <a className="image">
-              <img alt={player.name} />
-            </a>
-            <div className="content">
-              <a className="header">{player.name}</a>
-            </div>
-          </div>
-        </div>
+        <PlayerCard
+          players={this.state.playerInfo}
+          playerId={player.account_id}
+          index={ind}
+        />
       ));
     }
     return <div className="ui grid">{content}</div>;
@@ -50,5 +53,12 @@ export default class Players extends Component {
 
   render() {
     return <div>{this.renderPlayers()}</div>;
+  }
+  componentWillMount() {
+    dota_api.get(`proPlayers`).then(d =>
+      this.setState({
+        playerInfo: d.data
+      })
+    );
   }
 }
