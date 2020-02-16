@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import FrontView from "./components/FrontView";
 import Headers from "./components/Headers";
 import TeamView from "./components/TeamView";
+import Footer from "./components/Footer";
 import "./app.css";
 class App extends Component {
   constructor(props) {
@@ -20,10 +21,11 @@ class App extends Component {
     // console.log(this.state);
     return (
       <div className="ui container">
-        <Headers />
+        {/* <Headers /> */}
         <FrontView />
         <SearchBar changeTeamId={this.changeTeamId} />
         <TeamView teamId={this.state.teamId} />
+        <Footer />
       </div>
     );
   }
