@@ -4,7 +4,7 @@ export default class FrontView extends Component {
   render() {
     return (
       <div className="ui container">
-        <h1 className="ui header">Dota Teams</h1>
+        <h1 className="ui header white ">Dota Teams</h1>
       </div>
     );
   }

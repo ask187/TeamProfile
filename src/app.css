@@ -1,0 +1,13 @@
+#root {
+  background-color: #2d2d56;
+  min-height: 100vh;
+  /* clip-path: polygon(0% 0%, 99% 1%, 100% 78%, 0 100%, 0 63%); */
+}
+
+.margin5 {
+  margin: 5px;
+}
+
+.white {
+  color: white !important;
+}

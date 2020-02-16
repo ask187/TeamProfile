@@ -6,7 +6,8 @@ export default class SearchBar extends Component {
     super(props);
     this.state = {
       searchKey: "",
-      teams: {}
+      teams: {},
+      iterate: false
     };
   }
   componentWillMount() {
@@ -20,20 +21,22 @@ export default class SearchBar extends Component {
         return obj;
       });
       this.setState({
-        teams: teamsObj
+        teams: teamsObj,
+        iterate: true
       });
     });
   }
-  clearForm = () => {
-    this.setState({
-      searchKey: "",
-      teams: {}
-    });
-    this.props.changeTeamId("");
-  };
+  //   clearForm = () => {
+  //     this.setState({
+  //       searchKey: "",
+  //       teams: {},
+  //       iterate: false
+  //     });
+  //     this.props.changeTeamId("");
+  //   };
   submitform = props => {
     props.preventDefault();
-    if (this.state.teams !== {}) {
+    if (this.state.teams !== {} && this.state.iterate) {
       let teams = [...this.state.teams];
       let foundObj = teams.filter(
         d => d.team_name.toUpperCase() === this.state.searchKey.toUpperCase()
@@ -64,19 +67,19 @@ export default class SearchBar extends Component {
               onChange={this.inputChange}
               placeholder="Search Team Names"
             />
-            <div className="ui container">
+            <div className="ui container margin5">
               <button
                 //   onClick={() => this.submitform()}
                 className="ui  huge green button"
               >
                 Find
               </button>
-              <button
+              {/* <button
                 onClick={() => this.clearForm()}
                 className="ui  huge blue button"
               >
                 Clear
-              </button>
+              </button> */}
             </div>
           </div>
         </form>

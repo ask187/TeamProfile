@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import FrontView from "./components/FrontView";
 import Headers from "./components/Headers";
 import TeamView from "./components/TeamView";
+import "./app.css";
 class App extends Component {
   constructor(props) {
     super(props);
